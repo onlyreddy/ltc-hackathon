@@ -5,8 +5,9 @@ import { DefaultTheme } from 'react-native-paper';
 import Login from './src/features/login/Login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import NewPayeeForm from './src/features/new-payee/NewPayeeForm';
 import BottomTabs from './src/features/bottom-navigation/Navigation'
+import { Provider } from 'react-redux';
+import { store } from './src/store/index';
 
 const customTheme = {
   ...DefaultTheme,
@@ -18,26 +19,20 @@ const customTheme = {
 };
 
 const Stack = createNativeStackNavigator();
-const Tab = createNativeStackNavigator();
-
-const AccountsStack = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="NewPayeeForm" component={NewPayeeForm} />
-  </Stack.Navigator>
-);
-
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <PaperProvider theme={customTheme}>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="BottomTabs">
-            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-            <Stack.Screen name="BottomTabs" component={BottomTabs} options={{ headerShown: false }} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </PaperProvider>
+      <Provider store={store}>
+        <PaperProvider theme={customTheme}>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="BottomTabs">
+              <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+              <Stack.Screen name="BottomTabs" component={BottomTabs} options={{ headerShown: false }} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PaperProvider>
+      </Provider>
     </SafeAreaProvider>
   );
 }
