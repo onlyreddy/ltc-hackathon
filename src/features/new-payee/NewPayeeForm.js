@@ -17,12 +17,12 @@ const chips = [
 ];
 
 const NewPayeeForm = () => {
-    const [name, setName] = useState('John Doe');
+    const [name, setName] = useState('');
     const [accountNumber, setAccountNumber] = useState('');
     const [secondAccountNumber, setSecondAccountNumber] = useState('');
     const [ifscCode, setIfscCode] = useState('');
     const [bankName, setBankName] = useState('');
-    const [amount, setAmount] = useState(0.0);
+    const [amount, setAmount] = useState(0);
     const navigation = useNavigation();
     const [selectedChip, setSelectedChip] = useState(null);
 
@@ -55,8 +55,13 @@ const NewPayeeForm = () => {
                         mode='flat'
                         value={amount}
                         onChangeText={setAmount}
-                        style={styles.input}
+                        style={[styles.input, {
+                            fontWeight: '700',
+                            backgroundColor: 'transparent',
+                            fontSize: 24
+                        }]}
                         inputMode='numeric'
+                        defaultValue='0'
                     />
                     <Card.Content>
                         <TextInput
@@ -150,7 +155,6 @@ const styles = StyleSheet.create({
     input: {
         marginBottom: 16,
     },
-
     chipsContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',

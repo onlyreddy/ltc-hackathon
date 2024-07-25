@@ -12,13 +12,22 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera",
+        "NSFaceIDUsageDescription": "Allow $(PRODUCT_NAME) to use Face ID.",
+        "NSMicrophoneUsageDescription": "This app uses the microphone for authentication."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "package": "com.anonymous.myproject"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,5 +39,26 @@
   "permissions": [
     "CAMERA",
     "MEDIA_LIBRARY"
-  ]
+  ],
+  "plugins": [
+    [
+      "react-native-vision-camera",
+      {
+        "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
+        "enableMicrophonePermission": true,
+        "microphonePermissionText": "$(PRODUCT_NAME) needs access to your Microphone.",
+        "NSMicrophoneUsageDescription": "We need access to the microphone for voice recognition."
+      },
+      "expo-local-authentication",
+      {
+        "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
+      }
+    ]
+  ],
+  "android": {
+    "permissions": [
+      "USE_BIOMETRIC",
+      "RECORD_AUDIO"
+    ]
+  }
 }

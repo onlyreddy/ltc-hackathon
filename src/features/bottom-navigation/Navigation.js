@@ -181,7 +181,7 @@ const MyTabs = () => {
                 </View>
             </Appbar.Header>
             <Tab.Navigator
-                initialRouteName='Expenses'
+                initialRouteName='Accounts'
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName;

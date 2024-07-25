@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
 import { Button, Text, IconButton } from 'react-native-paper';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const ConfirmationScreen = ({ route, navigation }) => {
-    const { name, accountNumber, ifscCode, bankName, amount, remarks } = route.params || {};
+    const { name, accountNumber, ifscCode, bankName, amount, selectedChip } = route.params || {};
 
     const handleConfirm = () => {
         navigation.navigate('OTPScreen');
@@ -34,11 +35,11 @@ const ConfirmationScreen = ({ route, navigation }) => {
             </Text>
             <Text variant='labelLarge'>Remarks</Text>
             <Text variant='labelMedium' style={styles.value}>
-                {remarks}
+                {selectedChip}
             </Text>
             <Text variant='titleSmall'>PAY FROM</Text>
             <View style={styles.payFrom}>
-                <IconButton icon='bank' color='#006a4d' />
+                <IconButton icon={() => <MaterialCommunityIcons name={'bank'} size={24} color="#006a4d" />} />
                 <View style={styles.pay}>
                     <Text variant='labelSmall'>XXXX4545</Text>
                     <Text variant='labelSmall'>

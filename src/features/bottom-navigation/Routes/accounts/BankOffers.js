@@ -17,7 +17,7 @@ const BankOffers = () => {
                 autoplay
             >
                 <Card style={styles.slide}>
-                    <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flexDirection: 'row', flex: 1 }}>
                         <Text>
                             Get instant loan on your LLOYDS Bank credit card with zero
                             documentation.

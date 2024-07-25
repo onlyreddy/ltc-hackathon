@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import Svg, { G, Path, Circle, Text as SvgText } from 'react-native-svg';
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
@@ -144,7 +144,7 @@ const ExpensesTracker = () => {
     };
 
     return (
-        <>
+        <ScrollView showsHorizontalScrollIndicator={false}>
             <View style={styles.container}>
                 <View>
                     <Text variant='headlineMedium' style={{ marginBottom: -16 }}>
@@ -209,7 +209,7 @@ const ExpensesTracker = () => {
                 }}
             >
                 <View>
-                    {selectedExpense.message}
+                    <Text>{selectedExpense.message}</Text>
                     <Button
                         onPress={hideSnackbar}
                         mode='contained'
@@ -219,7 +219,7 @@ const ExpensesTracker = () => {
                     </Button>
                 </View>
             </Snackbar>
-        </>
+        </ScrollView>
     );
 };
 
