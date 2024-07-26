@@ -26,7 +26,6 @@ export default function AudioRecorder() {
                 playsInSilentModeIOS: true,
             });
 
-            console.log("Starting recording..");
             setIsRecording(true);
             const { recording } = await Audio.Recording.createAsync(
                 Audio.RecordingOptionsPresets.HIGH_QUALITY
@@ -40,7 +39,6 @@ export default function AudioRecorder() {
 
     const stopRecording = async () => {
         try {
-            console.log("Stopping recording..");
             setRecording(null);
             await recording.stopAndUnloadAsync();
             const uri = recording.getURI();

@@ -7,7 +7,7 @@ import CameraScreen from '../camera/Camera';
 const SettingsScreen = () => {
   const [notificationsEnabled, setNotificationsEnabled] = React.useState(false);
   const [darkModeEnabled, setDarkModeEnabled] = React.useState(false);
-  const [voiceCommand, setVoiceCommand] = React.useState(false);
+  const [voiceCommand, setVoiceCommand] = React.useState(true);
   const [trustedPerson, setTrustedPerson] = React.useState(false);
   const [openCamera, setOpenCamera] = React.useState(false)
   const navigation = useNavigation()

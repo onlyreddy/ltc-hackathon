@@ -26,7 +26,7 @@ export default function App() {
       <Provider store={store}>
         <PaperProvider theme={customTheme}>
           <NavigationContainer>
-            <Stack.Navigator initialRouteName="Login">
+            <Stack.Navigator initialRouteName="BottomTabs">
               <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
               <Stack.Screen name="BottomTabs" component={BottomTabs} options={{ headerShown: false }} />
             </Stack.Navigator>

@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Accounts from './Routes/accounts/Accounts';
-import { Text, Appbar, Badge, useTheme } from 'react-native-paper';
+import { Text, Appbar, Badge, useTheme, Modal, Button } from 'react-native-paper';
 import NewPayeeForm from '../new-payee/NewPayeeForm';
 import { createStackNavigator } from '@react-navigation/stack';
 import ConfirmationScreen from '../new-payee/ConfirmationScreen';
@@ -22,7 +22,7 @@ const ApplyNowScreen = () => (
             source={require('../../assets/apply.png')}
             style={styles.placeholderImage}
         />
-        <Text variant='headlineLarge' style={{ color: '#006a4d' }}>
+        <Text variant='headlineLarge' style={{ color: '#006a4d', marginVertical: 16 }}>
             Coming Soon...
         </Text>
     </View>
@@ -34,7 +34,7 @@ const GrabDealsScreen = () => (
             source={require('../../assets/discount.png')}
             style={styles.placeholderDeal}
         />
-        <Text variant='headlineLarge' style={{ color: '#006a4d' }}>
+        <Text variant='headlineLarge' style={{ color: '#006a4d', marginVertical: 16 }}>
             Coming Soon...
         </Text>
     </View>
@@ -154,8 +154,15 @@ const NewPayeeStack = () => (
 const MyTabs = () => {
     const { colors } = useTheme()
     const navigation = useNavigation();
+    const [showLogout, setShowLogout] = React.useState(false);
 
     const handleOnAvatarClick = () => navigation.navigate('Settings');
+
+    const hideModal = () => setShowLogout(false);
+    const handleLogout = () => {
+        setShowLogout(false);
+        navigation.navigate('Login')
+    }
 
     return (
         <>
@@ -177,7 +184,7 @@ const MyTabs = () => {
                         />
                         <Badge style={styles.badge}>3</Badge>
                     </View>
-                    <Appbar.Action color='#fff' icon='logout' onPress={() => { }} />
+                    <Appbar.Action color='#fff' icon='logout' onPress={() => setShowLogout(true)} />
                 </View>
             </Appbar.Header>
             <Tab.Navigator
@@ -224,6 +231,17 @@ const MyTabs = () => {
                 <Tab.Screen name='Expenses' component={ExpensesTracker} options={{ headerShown: false }} />
                 <Tab.Screen name='More' component={MoreScreen} options={{ headerShown: false }} />
             </Tab.Navigator>
+            <Modal
+                visible={showLogout}
+                contentContainerStyle={styles.modalContainer}
+            >
+                <Text variant='headlineSmall' style={{ marginBottom: 16 }}>Logout</Text>
+                <Text>Are you sure, you want to logout?</Text>
+                <View style={{ flexDirection: 'row', marginVertical: 16, justifyContent: 'flex-end' }}>
+                    <Button mode='outlined' onPress={hideModal}>No</Button>
+                    <Button style={{ marginLeft: 16 }} mode='contained' onPress={handleLogout}>Yes</Button>
+                </View>
+            </Modal>
         </>
     );
 };
@@ -269,5 +287,11 @@ const styles = StyleSheet.create({
     actions: {
         flex: 1,
         flexDirection: 'row',
-    }
+    },
+    modalContainer: {
+        backgroundColor: "white",
+        padding: 20,
+        width: "90%",
+        margin: "auto",
+    },
 });

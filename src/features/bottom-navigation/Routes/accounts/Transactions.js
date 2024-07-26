@@ -32,7 +32,7 @@ const Transactions = () => {
 
     return (
 
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.filters}>
                 <Text variant='labelMedium' style={styles.header}>TRANSACTIONS</Text>
                 <Card style={styles.transactions} mode='outlined'>
@@ -78,13 +78,14 @@ const Transactions = () => {
                             </View>
                         )}
                         ItemSeparatorComponent={() => <Divider />}
+                        showsHorizontalScrollIndicator={false}
                     />
                     <Card.Actions>
                         <Button mode='text'>View All</Button>
                     </Card.Actions>
                 </Card>
             </View>
-        </ScrollView>
+        </View>
     )
 }
 

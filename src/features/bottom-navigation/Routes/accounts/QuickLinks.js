@@ -8,7 +8,7 @@ const quickLinks = [
     { id: '3', icon: 'file-document-outline', label: 'Payments' },
     { id: '4', icon: 'transit-transfer', label: 'Transfers' },
     { id: '5', icon: 'receipt', label: 'Statements' },
-    { id: '6', icon: 'support-agent', label: 'Support' },
+    { id: '6', icon: 'phone', label: 'Support' },
 ];
 
 const QuickLinks = () => {

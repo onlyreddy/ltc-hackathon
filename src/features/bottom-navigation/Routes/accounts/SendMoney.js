@@ -29,6 +29,7 @@ const avatars = [
 
 const SendMoney = () => {
   const navigation = useNavigation();
+  
   const handlePress = React.useCallback(() => {
     navigation.navigate('NewPayeeForm');
   }, []);

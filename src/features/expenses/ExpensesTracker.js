@@ -4,8 +4,8 @@ import { Button, Text } from 'react-native-paper';
 import Svg, { G, Path, Circle, Text as SvgText } from 'react-native-svg';
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import { BarChart } from 'react-native-gifted-charts';
-import { Snackbar, Portal, IconButton } from 'react-native-paper';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import YourOffers from './YourOffers';
 
 // Sample data
 const pieData = [
@@ -90,6 +90,7 @@ const pie = d3Pie()
 const ExpensesTracker = () => {
     const [selectedExpense, setSelectedExpense] = useState(pieData[0]);
     const [visible, setVisible] = useState(false);
+    const [showOffers, setShowOffers] = React.useState(false)
 
     const showSnackbar = () => setVisible(true);
     const hideSnackbar = () => setVisible(false);
@@ -132,24 +133,20 @@ const ExpensesTracker = () => {
                     barWidth={50}
                     showGrid={false}
                 />
-                <Button
-                    onPress={() => showSnackbar(true)}
-                    mode='outlined'
-                    style={{ marginTop: 16 }}
-                >
-                    View Your Best Offers
-                </Button>
             </View>
         );
     };
 
     return (
-        <ScrollView showsHorizontalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
                 <View>
-                    <Text variant='headlineMedium' style={{ marginBottom: -16 }}>
-                        Expenses - July
-                    </Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text variant='headlineMedium' style={{ marginBottom: -16 }}>
+                            Expenses - July
+                        </Text>
+                        <Button mode='contained' onPress={() => setShowOffers(true)}>Your Offers</Button>
+                    </View>
                     <Svg width={width - 50} height={width - 50}>
                         <G x={width / 2} y={width / 2}>
                             {pie(pieData).map((slice, index) => (
@@ -190,35 +187,8 @@ const ExpensesTracker = () => {
                 </View>
                 {renderBarChart()}
             </View>
-            <Snackbar
-                visible={visible}
-                style={styles.snackbar}
-                duration={1000}
-                action={{
-                    onPress: hideSnackbar,
-                    label: '',
-                    icon: () => (
-                        <IconButton
-                            icon='close'
-                            color='white'
-                            size={20}
-                            style={styles.closeIcon}
-                            onPress={hideSnackbar}
-                        />
-                    ),
-                }}
-            >
-                <View>
-                    <Text>{selectedExpense.message}</Text>
-                    <Button
-                        onPress={hideSnackbar}
-                        mode='contained'
-                        style={styles.snackAction}
-                    >
-                        Read more
-                    </Button>
-                </View>
-            </Snackbar>
+
+            <YourOffers isOpen={showOffers} onClose={() => setShowOffers(false)} />
         </ScrollView>
     );
 };
@@ -231,21 +201,7 @@ const styles = StyleSheet.create({
     barChartTitle: {
         marginVertical: 16,
     },
-    snackbar: {
-        backgroundColor: '#fff',
-        margin: 'auto', // Customize background color if needed,
-        width: '90%',
-        marginBottom: 16,
-    },
-    snackAction: {
-        margin: 'auto',
-        width: 'auto',
-        marginTop: 16,
-    },
-    closeIcon: {
-        marginRight: 0, // Remove default margin
-        alignItems: 'flex-start'
-    },
+
 });
 
 export default ExpensesTracker;
