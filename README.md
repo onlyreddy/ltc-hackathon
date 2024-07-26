@@ -1,1 +1,6 @@
-# ltc-hackathon
+# ltc-hackathon![login](https://github.com/user-attachments/assets/10a1d592-5926-425c-9155-2d742da866a7)
+![home_2](https://github.com/user-attachments/assets/51d8c027-e1e7-4f00-bd43-66d09103120c)
+![home_1](https://github.com/user-attachments/assets/30a9b5ef-041e-4355-bef4-8d2f098629c8)
+![expense_tracker_main](https://github.com/user-attachments/assets/1b15a49f-9e29-4922-b12c-20a547d0e6ac)
+![expense_tracker](https://github.com/user-attachments/assets/84b35879-dbd8-429d-8f64-8625ced34bfa)
+![settings](https://github.com/user-attachments/assets/2524f318-3902-4719-9eea-31846f4ccbba)
